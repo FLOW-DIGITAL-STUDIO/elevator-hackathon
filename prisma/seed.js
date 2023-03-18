@@ -3,9 +3,10 @@ const {  players } = require('./data.js');
 const prisma = new PrismaClient();
 
 const load = async () => {
+  console.log("test")
   try {
-    players.map((player)=>{
-         prisma.player.createMany({
+    players.map( async (player)=>{
+         await prisma.player.createMany({
           data: player,
         });
     })

@@ -3,12 +3,15 @@ export const metadata = {
   description: 'Next App',
 }
  import '../styles/globals.css'
-import Nav from './components/Nav/page'
+
+ import Nav from '../components/Nav/page'
 export default function RootLayout({ children }) {
  return (
     <html lang="en">
+      <body>
       <Nav/>
-      <body>{children}</body>
+        {children}
+      </body>
     </html>
   )
 }
