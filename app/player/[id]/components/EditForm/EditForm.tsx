@@ -18,7 +18,7 @@ const EditForm: React.FC<props.TableContentProps> = ({ player }) => {
     handleSubmit,
     reset,
     setValue,
-    formState: { errors },
+    formState: { errors }, 
   } = useForm({
     defaultValues: {
       firstname: player.firstname,
