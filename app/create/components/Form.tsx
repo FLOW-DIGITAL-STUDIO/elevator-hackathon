@@ -1,15 +1,15 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+
 import * as z from 'zod';
 function Form() {
+  const [file, setFile] = useState('');
   const schema = z.object({
     firstname: z.string().nonempty(),
     lastname: z.string().nonempty(),
     salary: z.number().min(1),
     goal: z.number().min(1),
-    pictureURl: z.string().nonempty(),
   });
 
   const {
@@ -18,11 +18,20 @@ function Form() {
     reset,
     setValue,
     formState: { errors },
-  } = useForm({
-    resolver: zodResolver(schema),
-  });
+  } = useForm();
+  const validateForm = async (data: any) => {
+    try {
+      await schema?.safeParseAsync(data);
+      onSubmit(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const onCancel = () => {
+    reset();
+  };
 
-  const onSubmit = async (data: any) => {
+  async function onSubmit(data: any) {
     console.log(data);
 
     await fetch('http://localhost:3000/api/players/create', {
@@ -30,23 +39,23 @@ function Form() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: data,
+      body: JSON.stringify(data),
     });
-  };
-  const onCancel = () => {
-    reset();
-  };
-
+  }
   return (
     <form
       className='flex flex-row items-center justify-center h-full gap-8'
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(validateForm)}
     >
-      <div className='relative w-[250px] h-[250px] border-2'>
+      <div className='relative w-[250px] h-[250px] border-2 object-cover relative'>
+        <p>{file}</p>
         <input
           type='file'
           className='absolute w-full h-full opacity-0'
-          onChange={(e) => setValue('pictureURl', e?.target?.files?.[0].name)}
+          onChange={(e) => {
+            setValue('pictureURl', e?.target?.files?.[0].name);
+            setFile(e?.target?.files?.[0]?.name as string);
+          }}
         />
       </div>
       <div className='w-full'>
@@ -70,7 +79,11 @@ function Form() {
         </div>
         <div>
           <p>goals</p>
-          <input type='number' className='w-full border-2' {...register('goals')} />
+          <input
+            type='number'
+            className='w-full border-2'
+            onChange={(e) => setValue('goal', parseInt(e.target.value))}
+          />
           {errors.goals && <p className='text-red-400'>invalid goals</p>}
         </div>
         <div className='flex flex-row items-center justify-center gap-4 mt-4 '>
