@@ -7,6 +7,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
   // get limit of items per page from request
   const limit = req.query.limit || 6;
   // calculate offset
+  //@ts-ignore
   const offset = (page - 1) * limit;
   // get total number of items
   const total = (await prisma.joueurs.count()).toString();
