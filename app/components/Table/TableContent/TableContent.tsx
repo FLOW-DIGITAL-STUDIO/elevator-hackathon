@@ -1,6 +1,7 @@
 import React from 'react';
 import Flex from '../../Flex/Flex';
 import props from '../../../../interfaces/props';
+import Link from 'next/link';
 const TableContent: React.FC<props.TableContentProps> = ({ player }) => {
   const { id, firstname, lastname, goal, salary, devise } = player;
   const deletedPlayer = () => {
@@ -27,7 +28,9 @@ const TableContent: React.FC<props.TableContentProps> = ({ player }) => {
         alignItems='items-start'
         className='gap-[20px]'
       >
-        <button className='cursor-pointer'>edit</button>
+        <Link href={`/player/${id}`}>
+          <button className='cursor-pointer'>edit</button>
+        </Link>
         <button className='cursor-pointer'>copy</button>
         <button className='cursor-pointer' onClick={() => deletedPlayer()}>
           delete

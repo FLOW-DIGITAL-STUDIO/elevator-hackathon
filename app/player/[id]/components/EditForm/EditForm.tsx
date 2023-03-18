@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import * as z from 'zod';
-function Form() {
+import props from '../../../../interfaces/props';
+const EditForm: React.FC<props.TableContentProps> = ({ player }) => {
   const [file, setFile] = useState('');
   const schema = z.object({
     firstname: z.string().nonempty(),
@@ -18,7 +19,15 @@ function Form() {
     reset,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      firstname: player.firstname,
+      lastname: player.lastname,
+      salary: player.salary,
+      goal: player.goal,
+      pictureURl: player.pictureURl,
+    },
+  });
   const validateForm = async (data: any) => {
     try {
       await schema?.safeParseAsync(data);
@@ -32,8 +41,8 @@ function Form() {
   };
 
   async function onSubmit(data: any) {
-    await fetch('http://localhost:3000/api/players/create', {
-      method: 'POST',
+    await fetch(`http://localhost:3000/api/editPlayer?id=${player.id}`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -51,7 +60,7 @@ function Form() {
           type='file'
           className='absolute w-full h-full opacity-0'
           onChange={(e) => {
-            setValue('pictureURl', e?.target?.files?.[0].name);
+            setValue('pictureURl', e?.target?.files?.[0].name as string);
             setFile(e?.target?.files?.[0]?.name as string);
           }}
         />
@@ -82,7 +91,7 @@ function Form() {
             className='w-full border-2'
             onChange={(e) => setValue('goal', parseInt(e.target.value))}
           />
-          {errors.goals && <p className='text-red-400'>invalid goals</p>}
+          {errors.goal && <p className='text-red-400'>invalid goal</p>}
         </div>
         <div className='flex flex-row items-center justify-center gap-4 mt-4 '>
           <button type='submit' className='text-white bg-primary'>
@@ -95,6 +104,6 @@ function Form() {
       </div>
     </form>
   );
-}
+};
 
-export default Form;
+export default EditForm;
