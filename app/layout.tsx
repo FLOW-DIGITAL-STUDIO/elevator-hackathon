@@ -12,7 +12,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      {/* create header with tailwindcss */}
+      <body>
+        <header className='container justify-between	align-baseline px-10 py-3 bg-gray-200 flex flex-row space-x-1 ' >
+            <span> Liste des joueurs</span>
+            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+                Ajouter un joueur
+            </button>
+        </header>
+        <div className="container mx-auto p-5">
+          <main>{children}</main>
+        </div>
+      </body>
     </html>
   )
 }
