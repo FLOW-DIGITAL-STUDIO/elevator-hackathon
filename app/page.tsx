@@ -1,6 +1,7 @@
 import React from 'react';
 import { PrismaClient } from '@prisma/client';
-import { Navbar } from './Navbar/page';
+import { Navbar } from './components/Navbar/page';
+import { PlayerTable } from './components/PlayersTable.tsx/page';
 
 const fetchPlayers = async () => {
   const prisma = new PrismaClient();
@@ -11,11 +12,9 @@ const fetchPlayers = async () => {
 export default async function Home() {
   const players = await fetchPlayers();
   return (
-    <main className="">
+    <main className="h-full">
       <Navbar />
-      {players?.length
-        ? players.map((e) => <p>{e?.firstName}</p>)
-        : 'Players list empty'}
+      <PlayerTable players={players} />
     </main>
   );
 }

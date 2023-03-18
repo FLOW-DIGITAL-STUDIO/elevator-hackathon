@@ -16,7 +16,7 @@ model Player {
   firstName  String @db.VarChar(255)
   lastName   String @db.VarChar(255)
   goal       Int
-  salary     BigInt
+  salary     String
   devise     String @db.Char(10)
   pictureURl String @db.Char(255)
 }
