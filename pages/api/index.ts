@@ -1,6 +1,7 @@
 import prisma from '../../lib/prisma';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(req, res) {
+export default async function handler(req:NextApiRequest, res:NextApiResponse) {
   // get page number from request 
   const page = req.query.page || 1;
   // get limit of items per page from request

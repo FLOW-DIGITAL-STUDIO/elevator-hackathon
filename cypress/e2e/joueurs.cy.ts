@@ -1,6 +1,8 @@
+
 describe('Home page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/')
+const url = Cypress.env("http://localhost:3000/");
+    cy.visit(url)
   })
 
   it('should display loading message when there are no joueurs', () => {
