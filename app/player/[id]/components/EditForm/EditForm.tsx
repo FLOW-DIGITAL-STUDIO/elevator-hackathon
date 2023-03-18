@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import * as z from 'zod';
-import props from '../../../../interfaces/props';
+import props from '../../../../../interfaces/props';
 const EditForm: React.FC<props.TableContentProps> = ({ player }) => {
   const [file, setFile] = useState('');
   const schema = z.object({
