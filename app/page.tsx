@@ -1,13 +1,20 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+import React, { ReactNode } from 'react';
 
-const inter = Inter({ subsets: ['latin'] })
+import Flex from './components/Flex/Flex';
+import { getPlayers } from '../utils/getPlayers';
+import { Player } from '../interfaces/type';
+import PlayersTable from './components/PlayersTable/PlayersTable';
 
-export default function Home() {
+const Home: () => Promise<ReactNode> = async () => {
+  const players: Player[] = await getPlayers();
+
   return (
-    <div>
-      hello
-    </div>
-  )
-}
+    <>
+      <Flex className='w-full mt-[10%]' justifyContent='justify-center' alignItems='items-center'>
+        <PlayersTable players={players} />
+      </Flex>
+    </>
+  );
+};
+
+export default Home;
