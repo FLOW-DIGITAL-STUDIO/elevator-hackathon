@@ -9,7 +9,7 @@ const Table: React.FC<props.ContainerProps> = ({ children }) => {
       flexDirection='flex-col'
       justifyContent='justify-start'
       alignItems='items-start'
-      className='border-2 w-fit'
+      className='p-8 border-2 w-fit'
     >
       {children}
     </Flex>

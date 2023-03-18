@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@cypress/react18": "^2.0.0",
+    "@hookform/resolvers": "^2.9.11",
     "@prisma/client": "^4.11.0",
     "@types/node": "^18.15.3",
     "@types/react": "18.0.28",
