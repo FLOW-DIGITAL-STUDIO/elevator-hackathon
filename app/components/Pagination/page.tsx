@@ -13,14 +13,18 @@ export const Pagination = ({
     <div>
       <div className="mt-4 flex flex-row gap-2">
         <span className="border rounded-md border-black px-2">1</span>
-        <span>{currentPage}</span>
+        <span id="current-position">{currentPage}</span>
         <span className="border rounded-md border-black px-2">{max}</span>
       </div>
       <div className="flex flex-row items-center justify-center">
-        <button onClick={() => handleMoving(-1)}>&#60;</button>{' '}
+        <button aria-label="backward" onClick={() => handleMoving(-1)}>
+          &#60;
+        </button>{' '}
         <button>&#60;&#60;</button>
         <button>&#62;&#62;</button>{' '}
-        <button onClick={() => handleMoving(1)}>&#62;</button>
+        <button aria-label="forward" onClick={() => handleMoving(1)}>
+          &#62;
+        </button>
       </div>
     </div>
   );

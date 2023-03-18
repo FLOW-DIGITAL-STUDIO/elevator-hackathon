@@ -10,27 +10,28 @@ export const PlayerTable = ({ players }: { players: IPlayer[] }) => {
   const [shown, setShown] = useState(_.take(players, 6));
   const [currentPage, setCPage] = useState(1);
   const handleMoving = (direction: number) => {
+    console.log();
     if (direction > 0 && currentPage + 1 <= Math.ceil(players.length / 6)) {
       const tmp = [...players];
       tmp.splice(0, currentPage * 6);
       setShown(_.take(tmp, 6));
       setCPage(currentPage + 1);
-    } else if (direction < 0 && 1 > currentPage - 1) {
+    } else if (direction < 0) {
       const tmp = [...players];
       setShown(_.take(_.drop(tmp, (currentPage - 2) * 6), 6));
-      setCPage(currentPage - 1);
-      console.log(currentPage - 1, (currentPage - 1) * 6);
+      if (currentPage >= 0) setCPage(currentPage - 1);
     }
   };
 
   return (
-    <div aria-label={`total-players-${players.length}`}>
+    <div id="table" aria-label={`total-players-${players.length}`}>
       <div className="flex flex-row items-center justify-center ">
         <div className="w-2/3 flex flex-col items-center border border-black rounded-md mt-4">
           <TableHeader />
           {shown?.length
             ? shown.map((e: IPlayer) => (
                 <Player
+                  key={`player-${e?.id}`}
                   firstName={e.firstName}
                   lastName={e.lastName}
                   goals={e.goal}

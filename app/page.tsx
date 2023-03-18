@@ -2,6 +2,7 @@ import React from 'react';
 import { PrismaClient } from '@prisma/client';
 import { Navbar } from './components/Navbar/page';
 import { PlayerTable } from './components/PlayersTable.tsx/page';
+import { Create } from './components/CreateUserDialog/page';
 
 const fetchPlayers = async () => {
   const prisma = new PrismaClient();
