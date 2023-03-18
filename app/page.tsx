@@ -1,10 +1,21 @@
 import React from 'react';
-import styles from './page.module.css';
+import { PrismaClient } from '@prisma/client';
+import { Navbar } from './Navbar/page';
 
-export default function Home() {
+const fetchPlayers = async () => {
+  const prisma = new PrismaClient();
+  const players = await prisma.player.findMany();
+  return players;
+};
+
+export default async function Home() {
+  const players = await fetchPlayers();
   return (
-    <main className={styles.main}>
-      <p>init</p>
+    <main className="">
+      <Navbar />
+      {players?.length
+        ? players.map((e) => <p>{e?.firstName}</p>)
+        : 'Players list empty'}
     </main>
   );
 }
