@@ -1,0 +1,22 @@
+# Dependencies
+node_modules
+prisma
+lib
+# Build files
+.next
+out
+
+# Test files
+**/*.test.js
+**/*.spec.js
+**/*.test.ts
+**/*.spec.ts
+
+# Other files
+coverage/
+public/
+*.md
+*.yml
+*.json
+*.lock
+*.config.js
