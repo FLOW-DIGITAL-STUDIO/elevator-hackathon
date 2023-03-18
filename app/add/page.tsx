@@ -88,7 +88,7 @@ export default function Page({}: Props) {
           </div>
           <button type="submit" className="bg-cyan-900 text-white px-2 py-2 rounded-md mt-4 ">
             Submit
-          </button>
+          </button> 
         </form>
       </div>
     </div>
