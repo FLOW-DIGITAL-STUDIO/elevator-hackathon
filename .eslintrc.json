@@ -1,0 +1,51 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@next/next/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@next/next", "@typescript-eslint"],
+  "rules": {
+    "react/prop-types": "off",
+    // require curly braces for all control statements (if, else, for, while, etc.)
+    "curly": ["error", "all"],
+
+    // require === and !== over == and !=
+    "eqeqeq": ["error", "always"],
+
+    // require double quotes for strings
+    "quotes": ["error", "double"],
+
+    // require semicolons at the end of statements
+    "semi": ["error", "always"],
+
+    // disallow empty blocks
+    "no-empty": "error",
+
+    // disallow console statements (console.log, console.warn, console.error)
+    "no-console": "error",
+
+    // disallow alert statements
+    "no-alert": "error",
+
+    // disallow function declarations and variables with the same name
+    "no-shadow": "error",
+
+    // disallow unnecessary ternary operators (x ? true : false)
+    "no-unneeded-ternary": "error"
+  }
+}
