@@ -1,6 +1,6 @@
 import React from "react";
 
-export default async function NotFound() {
+export default function Loading() {
   return (
     <div className="flex flex-row justify-center">
       <div className="min-h-[300px] flex flex-col justify-center text-center">
