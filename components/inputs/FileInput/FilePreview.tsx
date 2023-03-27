@@ -12,7 +12,7 @@ export default function FilePreview(props: TFilePreviewProps) {
     >
       {watchShowImage && (
         <img
-          alt=""
+          alt="selected picture"
           width={100}
           height={100}
           src={preview ? URL.createObjectURL(preview) : watchShowImage}
