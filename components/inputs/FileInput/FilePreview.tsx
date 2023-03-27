@@ -22,7 +22,7 @@ export default function FilePreview(props: TFilePreviewProps) {
       <div className="flex flex-col self-center w-full h-fit items-center justify-center bg-white overflow-hidden">
         <DocumentUpload size={48} className="text-gray-800" />
         <div className="text-xs font-light flex flex-col">
-          <span>{uploading ? "Loading..." : "Upload files"}</span>
+          <span>{uploading ? "Uploading..." : "Upload files"}</span>
           {status === 200 && <span className="text-green-500">success</span>}
         </div>
       </div>
