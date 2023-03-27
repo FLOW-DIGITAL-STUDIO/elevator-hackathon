@@ -18,7 +18,7 @@ export default function Form(props: TFormProps) {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(playerSchema),
-    defaultValues,
+    defaultValues: !defaultValues ? { profileURL: "" } : defaultValues,
   });
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);

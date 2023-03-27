@@ -15,5 +15,5 @@ model Player {
   goal       Int
   salary     Int
   devise     String @db.Char(10)
-  pictureURL String @db.Char(255)
+  pictureURL String @default("") @db.Char(255)
 }
