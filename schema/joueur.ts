@@ -1,24 +1,36 @@
-import {z} from "zod";
+import { z } from "zod";
 
 export const JoueurSchema = z.object({
-  firstname : z.string({
-    required_error : "First name is required"
-  }).min(4,{
-    message : "Must be at least 4 characters"
-  }),
-  lastname  : z.string({
-    required_error : "Last name is required"
-  }).min(4,{
-    message : "Must be at least 4 characters"
-  }),  
+  firstname: z
+    .string({
+      required_error: "First name is required",
+    })
+    .min(4, {
+      message: "Must be at least 4 characters",
+    }),
+  lastname: z
+    .string({
+      required_error: "Last name is required",
+    })
+    .min(4, {
+      message: "Must be at least 4 characters",
+    }),
   salary: z
     .string()
-    .transform((val) => parseInt(val))
-    ,
+    .nonempty({
+      message: "Salary is required",
+    })
+    .transform((val) => parseInt(val)),
   goal: z
-  .string()
-  .transform((val) => parseInt(val)),
-  
+    .string()
+    .nonempty({
+      message: "Goal is required",
+    })
+    .transform((val) => parseInt(val)),
 });
 
-type Login = z.infer<typeof JoueurSchema>;
+export type Joueur = z.infer<typeof JoueurSchema> & {
+  id?: number;
+  pictureURl?: string;
+  devise?: string;
+};
