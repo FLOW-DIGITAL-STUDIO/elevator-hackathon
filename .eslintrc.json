@@ -1,0 +1,33 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": "next/core-web-vitals",
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@next/next", "@typescript-eslint"],
+  "rules": {
+    "react/prop-types": "off",
+    // require === and !== over == and !=
+    "eqeqeq": ["error", "always"],
+    // disallow empty blocks
+    "no-empty": "error",
+
+    // disallow alert statements
+    "no-alert": "error",
+
+    // disallow function declarations and variables with the same name
+    "no-shadow": "error",
+
+    // disallow unnecessary ternary operators (x ? true : false)
+    "no-unneeded-ternary": "error"
+  }
+}
